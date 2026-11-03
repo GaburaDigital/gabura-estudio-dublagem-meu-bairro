@@ -1,0 +1,20 @@
+{
+  "name": "gabura-estudio-dublagem-meu-bairro",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Estúdio de gravação da oficina do Meu Bairro Vira Game: grava as audiodescrições das crianças (personagem, NPC, cenário e extras).",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "fflate": "0.8.2"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "vite": "5.4.11"
+  }
+}

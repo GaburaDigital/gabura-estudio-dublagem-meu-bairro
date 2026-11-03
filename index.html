@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu Bairro – Gravações</title>
+  <meta name="description" content="Estúdio da oficina do Meu Bairro Vira Game: grava as audiodescrições das crianças (personagem, NPC, cenário e extras).">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ffd166'/%3E%3Crect x='24' y='12' width='16' height='26' rx='8' fill='%231f5fc4'/%3E%3Cpath d='M18 32a14 14 0 0 0 28 0M32 46v8' stroke='%231f5fc4' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="topo">
+    <h1>Meu Bairro <span>Gravações</span></h1>
+    <div class="microfone" role="group" aria-label="Microfone">
+      <select id="microfone" aria-label="Escolher microfone"></select>
+      <button class="bt" id="ligar-microfone" type="button">Ligar microfone</button>
+      <div class="medidor" id="medidor" role="img" aria-label="Volume do microfone"><span></span></div>
+      <label class="marcar claro" title="Só se o microfone não tiver saída de fone própria."><input type="checkbox" id="retorno"> Ouvir minha voz no fone</label>
+      <label class="marcar claro" title="Supressão de ruído do próprio navegador. Ajuda em lugar barulhento."><input type="checkbox" id="limpeza"> Tirar ruído</label>
+    </div>
+    <div class="acoes">
+      <button class="bt" id="importar" type="button">Importar</button>
+      <button class="bt principal" id="salvar-tudo" type="button">Salvar tudo</button>
+      <button class="bt redondo" id="abrir-ajuda" type="button" aria-label="Ajuda">?</button>
+    </div>
+  </header>
+
+  <main class="area">
+    <aside class="lateral" aria-label="Crianças">
+      <h2>Crianças <span id="total-criancas" class="contagem"></span></h2>
+      <button class="bt principal largo" id="nova-crianca" type="button">+ Nova criança</button>
+      <ul id="lista-criancas" class="lista-criancas"></ul>
+      <p class="versao">Versão <span id="versao"></span></p>
+    </aside>
+    <section id="crianca" class="crianca" aria-live="polite"></section>
+  </main>
+
+  <dialog id="ajuda" aria-labelledby="ajuda-titulo">
+    <h2 id="ajuda-titulo">Como usar no dia da oficina</h2>
+    <ol>
+      <li><b>Ligar microfone</b> e escolher o microfone USB. Fale normal: a barrinha deve ficar <b>verde</b>; vermelho é alto demais.</li>
+      <li><b>+ Nova criança</b>: escreva o nome ou apelido.</li>
+      <li>Em cada desenho (<b>Personagem</b>, <b>NPC</b>, <b>Cenário</b>), clique em <b>● Gravar</b> e peça para a criança contar o que desenhou. Clique em <b>■ Parar</b>. A barra de espaço também grava e para.</li>
+      <li>Até <b>3 tomadas</b> por desenho, nenhuma é obrigatória. A <b>★</b> marca a que vai para o jogo (a primeira já vem marcada).</li>
+      <li>O silêncio do começo e do fim é cortado sozinho. Para ajustar, arraste as alças laranja da onda.</li>
+      <li>Desenho a mais? <b>+ Adicionar extra</b> e escreva o que é.</li>
+      <li>Se a gravação da criança não der certo, grave com alguém da equipe e marque <b>Voz de adulto da equipe</b>.</li>
+      <li>Tudo fica guardado sozinho neste computador. No fim do dia, clique em <b>Salvar tudo</b> e guarde o ZIP em outro lugar também.</li>
+    </ol>
+    <h3>Fone de retorno</h3>
+    <p>Com o microfone USB que tem saída de fone, ligue o fone <b>no microfone</b> e deixe "Ouvir minha voz no fone" <b>desligado</b>.
+      Só com o headset (sem o microfone USB), ligue essa opção para escutar a gravação.</p>
+    <h3>Depois da oficina</h3>
+    <p><b>Exportar esta criança</b> gera <code>crianca_apelido.zip</code>. Dentro dele há um ZIP para cada desenho
+      (<code>personagem.zip</code>, <code>npc.zip</code>, <code>cenario.zip</code>, <code>extra_*.zip</code>):
+      é esse ZIP que você abre na ferramenta de recortes para escolher a tomada e escrever a legenda.</p>
+    <h3>Atalhos</h3>
+    <p><kbd>Espaço</kbd> grava/para no desenho escolhido · <kbd>P</kbd> ouve · <kbd>Esc</kbd> para o som</p>
+    <form method="dialog"><button class="bt principal">Entendi</button></form>
+  </dialog>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
