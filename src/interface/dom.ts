@@ -29,8 +29,8 @@ export function seg(s: number): string {
 }
 
 /** Baixa um arquivo gerado pelo app. */
-export function baixar(dados: Uint8Array | string, nome: string, tipo: string): void {
-  const blob = new Blob([typeof dados === 'string' ? dados : (dados as unknown as BlobPart)], { type: tipo });
+export function baixar(dados: Uint8Array | string | Blob, nome: string, tipo: string): void {
+  const blob = dados instanceof Blob ? dados : new Blob([typeof dados === 'string' ? dados : (dados as unknown as BlobPart)], { type: tipo });
   const url = URL.createObjectURL(blob);
   const a = h('a', { href: url, download: nome });
   document.body.append(a);

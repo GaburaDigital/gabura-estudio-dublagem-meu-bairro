@@ -1,5 +1,6 @@
 // Dados da oficina: cada criança tem as gravações do personagem, do NPC, do cenário e quantos extras quiser.
 // As tomadas (o áudio) ficam guardadas à parte, no navegador, pelo id da tomada.
+import type { Edicao } from '../audio/edicao';
 
 export type TipoGravacao = 'personagem' | 'npc' | 'cenario' | 'extra';
 
@@ -10,15 +11,19 @@ export const NOME_TIPO: Record<TipoGravacao, string> = {
   extra: 'Extra',
 };
 
-export const MAX_TOMADAS = 3;
+export const MAX_TOMADAS = 5;
 
 export interface Tomada {
   id: string;
   criada: number;
   duracao: number;
-  /** Corte (segundos). */
+  /** Corte (segundos), no som já editado. */
   inicio: number;
   fim: number;
+  /** Edições (apagar, silenciar, volume, fades). O áudio original guardado nunca muda. */
+  edicoes?: Edicao[];
+  /** Corte automático do original (para "Voltar ao original"). */
+  corteOriginal?: { inicio: number; fim: number };
 }
 
 export interface Gravacao {
@@ -40,6 +45,10 @@ export interface Crianca {
   anotacao: string;
   criada: number;
   gravacoes: Gravacao[];
+  /** Quando foi o último backup desta criança (Salvar tudo ou Exportar esta criança). */
+  backup?: number;
+  /** Quando algo desta criança mudou pela última vez (gravação, edição, texto). */
+  mudou?: number;
 }
 
 export interface Oficina {

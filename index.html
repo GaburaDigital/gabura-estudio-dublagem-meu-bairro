@@ -18,8 +18,13 @@
       <label class="marcar claro" title="Supressão de ruído do próprio navegador. Ajuda em lugar barulhento."><input type="checkbox" id="limpeza"> Tirar ruído</label>
     </div>
     <div class="acoes">
+      <div class="estados">
+        <span id="estado-backup" class="estado" aria-live="polite"></span>
+        <span id="estado-espaco" class="estado"></span>
+      </div>
       <button class="bt" id="importar" type="button">Importar</button>
-      <button class="bt principal" id="salvar-tudo" type="button">Salvar tudo</button>
+      <button class="bt principal" id="salvar-tudo" type="button" title="Backup: um ZIP por criança na pasta escolhida (pendrive ou HD)">Salvar tudo</button>
+      <button class="bt redondo" id="pasta-backup" type="button" aria-label="Escolher outra pasta para o backup" title="Escolher outra pasta para o backup">📁</button>
       <button class="bt redondo" id="abrir-ajuda" type="button" aria-label="Ajuda">?</button>
     </div>
   </header>
@@ -40,12 +45,22 @@
       <li><b>Ligar microfone</b> e escolher o microfone USB. Fale normal: a barrinha deve ficar <b>verde</b>; vermelho é alto demais.</li>
       <li><b>+ Nova criança</b>: escreva o nome ou apelido.</li>
       <li>Em cada desenho (<b>Personagem</b>, <b>NPC</b>, <b>Cenário</b>), clique em <b>● Gravar</b> e peça para a criança contar o que desenhou. Clique em <b>■ Parar</b>. A barra de espaço também grava e para.</li>
-      <li>Até <b>3 tomadas</b> por desenho, nenhuma é obrigatória. A <b>★</b> marca a que vai para o jogo (a primeira já vem marcada).</li>
+      <li>Até <b>5 tomadas</b> por desenho, nenhuma é obrigatória. A <b>★</b> marca a que vai para o jogo (a primeira já vem marcada).</li>
       <li>O silêncio do começo e do fim é cortado sozinho. Para ajustar, arraste as alças laranja da onda.</li>
       <li>Desenho a mais? <b>+ Adicionar extra</b> e escreva o que é.</li>
       <li>Se a gravação da criança não der certo, grave com alguém da equipe e marque <b>Voz de adulto da equipe</b>.</li>
-      <li>Tudo fica guardado sozinho neste computador. No fim do dia, clique em <b>Salvar tudo</b> e guarde o ZIP em outro lugar também.</li>
+      <li>Tudo fica guardado sozinho neste computador, assim que cada gravação para. Não precisa salvar nada à mão.</li>
+      <li><b>Backup</b>: em cada pausa, clique em <b>Salvar tudo</b>. Na primeira vez, escolha uma pasta no pendrive; ela fica lembrada (📁 troca a pasta). O aviso no topo mostra quantas gravações ainda não têm backup.</li>
     </ol>
+    <h3>Editar uma gravação (como no Scratch)</h3>
+    <ul>
+      <li><b>Arraste</b> sobre a onda para selecionar um trecho (fica amarelo). Um <b>clique</b> tira a seleção e marca de onde tocar.</li>
+      <li><b>▶ Tocar</b> toca a seleção (ou do ponto marcado até o fim). A agulha preta mostra onde está.</li>
+      <li><b>✂ Apagar</b> tira o trecho e junta o resto (bom para tirar a voz do adulto numa entrevista). <b>🔇 Silenciar</b> deixa o trecho mudo, sem encurtar.</li>
+      <li><b>Mais alto</b>, <b>Mais baixo</b> e os <b>fades</b> valem para a seleção; sem seleção, para a gravação toda. O volume final é nivelado sozinho: use o volume para equilibrar partes (por exemplo, a criança falou baixinho no fim).</li>
+      <li><b>⧉ Copiar para…</b> manda o trecho para outro desenho como tomada nova. Ex.: grave uma conversa só e depois mande cada parte para Personagem, NPC ou Cenário.</li>
+      <li><b>↶ Desfazer</b> (Ctrl+Z) e <b>Voltar ao original</b>: a gravação original nunca é apagada.</li>
+    </ul>
     <h3>Fone de retorno</h3>
     <p>Com o microfone USB que tem saída de fone, ligue o fone <b>no microfone</b> e deixe "Ouvir minha voz no fone" <b>desligado</b>.
       Só com o headset (sem o microfone USB), ligue essa opção para escutar a gravação.</p>
@@ -54,7 +69,7 @@
       (<code>personagem.zip</code>, <code>npc.zip</code>, <code>cenario.zip</code>, <code>extra_*.zip</code>):
       é esse ZIP que você abre na ferramenta de recortes para escolher a tomada e escrever a legenda.</p>
     <h3>Atalhos</h3>
-    <p><kbd>Espaço</kbd> grava/para no desenho escolhido · <kbd>P</kbd> ouve · <kbd>Esc</kbd> para o som</p>
+    <p><kbd>Espaço</kbd> grava/para no desenho escolhido · <kbd>P</kbd> toca/para · <kbd>Delete</kbd> apaga a seleção · <kbd>Ctrl</kbd>+<kbd>Z</kbd> desfaz · <kbd>Esc</kbd> para o som</p>
     <form method="dialog"><button class="bt principal">Entendi</button></form>
   </dialog>
   <script type="module" src="/src/main.ts"></script>

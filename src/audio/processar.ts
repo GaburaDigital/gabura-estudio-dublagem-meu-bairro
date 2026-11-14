@@ -57,16 +57,21 @@ export function tirarRonco(x: Float32Array, taxa = TAXA): Float32Array {
 
 /** Deixa todas as vozes com volume parecido (média da fala perto de -18 dB, sem passar de -1 dB no pico). */
 export function nivelar(x: Float32Array): Float32Array {
+  const ganho = ganhoParaNivelar(x);
+  return ganho === 1 ? x.slice() : x.map((v) => v * ganho);
+}
+
+/** O ganho que o nivelar usaria (para ouvir um trecho com o mesmo volume do som inteiro). */
+export function ganhoParaNivelar(x: Float32Array): number {
   let soma = 0, n = 0, pico = 0;
   for (let i = 0; i < x.length; i++) {
     const a = Math.abs(x[i]);
     if (a > pico) pico = a;
     if (a > 0.01) { soma += x[i] * x[i]; n++; }
   }
-  if (n === 0 || pico === 0) return x.slice();
+  if (n === 0 || pico === 0) return 1;
   const rms = Math.sqrt(soma / n);
-  const ganho = Math.min(0.126 / rms, 0.89 / pico, 8);
-  return x.map((v) => v * ganho);
+  return Math.min(0.126 / rms, 0.89 / pico, 8);
 }
 
 /** O áudio que vai para o jogo: corte + sem ronco + volume nivelado. */
